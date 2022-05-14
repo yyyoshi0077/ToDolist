@@ -10,24 +10,27 @@
 </head>
 
 <body>
-    <h2>ToDoリスト</h2>
-    <div id="app">
-        <div class="a">
-            <div v-for="todo in todos">
-                <label>
-                    <input type="checkbox" v-model="todo.done">
-                    <span v-bind:class="{donestyle:todo.done}">{{todo.text}}</span>
-                </label>
-            </div>
+    <div id="color">
+        <div class="wrap">
+            <h2 style="text-align:center;">ToDolist</h2>
+            <div id="app">
+                <div class="a">
+                    <div v-for="todo in todos">
+                        <label>
+                            <input type="checkbox" v-model="todo.done">
+                            <span v-bind:class="{donestyle:todo.done}">{{todo.text}}</span>
+                        </label>
+                    </div>
 
-            <input type="text" v-model.trim="addtext" v-on:keyup.enter="addToDo" placeholder="すること">
-            <!--//※中間の空白が２つ以上の場合に１つのみとなります。
+                    <input type="text" v-model.trim="addtext" v-on:keyup.enter="addToDo" placeholder="すること">
+                    <!--//※中間の空白が２つ以上の場合に１つのみとなります。
             例：　「　　　you 　　　good　　　」→「you good」-->
+                </div>
+                <p><button v-on:click="cleanToDo">処理済みを削除</button></p>
+                <p>{{remaining}} / {{todos.length}}件処理</p>
+            </div>
         </div>
-        <p><button v-on:click="cleanToDo">処理済みを削除</button></p>
-        <p>{{remaining}} / {{todos.length}}件処理</p>
     </div>
-
     <style>
         .donestyle {
             text-decoration: line-through;
